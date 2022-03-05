@@ -7,18 +7,46 @@ const [weather, setWeather] = useState({});
 const [temp, setTemp] = useState(0);
 const [isCelsius, setIsCelsius] = useState(true);
 const [icon, setIcon] = useState ('');
+//const [img, setImg] = useState('');
+let url;
 
+/*    const getImage = () => {
+        //if (icon === '01d') setImg('../assets/broken_clouds.jpg');
+        if (icon === '01d') {setImg('https://cdn.pixabay.com/photo/2018/08/06/22/55/sun-3588618_960_720.jpg')}; //clear sky
+        if (icon === '02d') {setImg('https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg')};//few clouds 
+        if (icon === '03d') { setImg('https://cdn.pixabay.com/photo/2014/09/12/18/41/white-clouds-443166_960_720.jpg') }//scattered clouds
+        if (icon === '04d') { setImg('https://cdn.pixabay.com/photo/2022/01/25/16/01/sky-6966721_960_720.jpg')}//broken clouds
+        if (icon === '09d') { setImg('https://cdn.pixabay.com/photo/2020/05/08/11/44/rain-5145277_960_720.jpg')}//shower rain
+        if (icon === '10d') { setImg('https://cdn.pixabay.com/photo/2020/05/08/11/44/rain-5145277_960_720.jpg')}//rain
+        if (icon === '11d') { setImg('https://cdn.pixabay.com/photo/2019/12/22/22/00/lightning-4713379_960_720.jpg')}//thunderstorm
+        if (icon === '13d') { setImg('https://cdn.pixabay.com/photo/2020/02/08/14/36/trees-4830285_960_720.jpg')}//snow
+        if (icon === '50d') { setImg('https://cdn.pixabay.com/photo/2016/07/22/16/29/fog-1535201_960_720.jpg')}//mist
+
+        if (icon === '01n') setImg('https://cdn.pixabay.com/photo/2017/06/08/06/03/british-columbia-2382640_960_720.jpg'); //clear sky
+        if (icon === '02n') setImg('https://cdn.pixabay.com/photo/2020/05/26/20/38/moon-5224745_960_720.jpg');//few clouds
+        if (icon === '03n') { setImg('https://cdn.pixabay.com/photo/2014/04/05/11/06/clouds-314476_960_720.jpg')}//scattered clouds
+        if (icon === '04n') { setImg('https://cdn.pixabay.com/photo/2016/11/29/13/12/cloudy-1869753_960_720.jpg')}//broken clouds
+        if (icon === '09n') { setImg('https://cdn.pixabay.com/photo/2020/05/08/11/44/rain-5145277_960_720.jpg')}//shower rain
+        if (icon === '10n') { setImg('https://cdn.pixabay.com/photo/2020/05/08/11/44/rain-5145277_960_720.jpg')}//rain
+        if (icon === '11n') { setImg('https://cdn.pixabay.com/photo/2020/07/12/20/47/thunderstorm-5398664_960_720.jpg')}//thunderstorm
+        if (icon === '13n') { setImg('https://cdn.pixabay.com/photo/2018/05/04/07/55/snow-3373432_960_720.jpg')}//snow
+        if (icon === '50n') { setImg('https://cdn.pixabay.com/photo/2016/11/18/15/36/fir-trees-1835402_960_720.jpg')}//mist
+  
+    }
+*/    
     const success = pos =>{
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
         const idKey = '534c120127d41a8820363cb05f55e278';
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idKey}`;
+        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idKey}`;
         
         axios.get(url)
             .then(res => {
+                //console.log(res);
                 setWeather(res);
                 setTemp(res.data?.main?.temp - 273.15);
                 setIcon(res.data?.weather?.[0]?.icon);
+                //getImage();
             });
             
         }
@@ -43,7 +71,7 @@ const [icon, setIcon] = useState ('');
     }
     
     
-    //document.body.style.backgroundImage = `url('${img}')`;
+    document.body.style.backgroundImage = `url('${img}')`;
     
     console.log(icon);
 
