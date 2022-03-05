@@ -8,7 +8,7 @@ const [temp, setTemp] = useState(0);
 const [isCelsius, setIsCelsius] = useState(true);
 const [icon, setIcon] = useState ('');
 const [img, setImg] = useState('');
-
+let url;
 
     const getImage = () => {
         //if (icon === '01d') setImg('../assets/broken_clouds.jpg');
@@ -31,50 +31,54 @@ const [img, setImg] = useState('');
         if (icon === '11n') { setImg('https://cdn.pixabay.com/photo/2020/07/12/20/47/thunderstorm-5398664_960_720.jpg')}//thunderstorm
         if (icon === '13n') { setImg('https://cdn.pixabay.com/photo/2018/05/04/07/55/snow-3373432_960_720.jpg')}//snow
         if (icon === '50n') { setImg('https://cdn.pixabay.com/photo/2016/11/18/15/36/fir-trees-1835402_960_720.jpg')}//mist
-        console.log(icon, img);
+
     
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const success = pos =>{
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
         const idKey = '534c120127d41a8820363cb05f55e278';
+        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idKey}`;
         
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idKey}`)
+        axios.get(url)
             .then(res => {
                 //console.log(res);
                 setWeather(res);
                 setTemp(res.data?.main?.temp - 273.15);
                 setIcon(res.data?.weather?.[0]?.icon);
-                getImage(); 
-            },[]);
-    }
+                getImage();
+            });
+            
+        }
+        
+        useEffect(()=>{
+            
+            navigator.geolocation.getCurrentPosition(success);
 
-    useEffect(()=>{
-
-        navigator.geolocation.getCurrentPosition(success);
-
-    })
+    },[success]);
 
     const changeGrade = ()=>{
-        console.log('hello')
+        
         if(isCelsius){
             setTemp((weather.data?.main?.temp - 273.15) *9/5 + 32)
             setIsCelsius(!isCelsius)
-            console.log((weather.data?.main?.temp - 273.15) *9/5 + 32)
+        
         }else{
             setTemp((weather.data?.main?.temp - 273.15))
             setIsCelsius(!isCelsius)
-            console.log((weather.data?.main?.temp - 273.15 - 32) * 5/9)
+        
         }
     }
+    
+    
+    document.body.style.backgroundImage = `url('${img}')`;
+    
+    console.log(icon);
 
-    //document.body.style = "background: red" ... ejemplo
     return (
         
-        <div className='container' style={{
-            backgroundImage: `url(${img})`
-            }}>
-
+        <div className='container'>
 
             
             <div className='container__card'>
@@ -83,9 +87,10 @@ const [img, setImg] = useState('');
 
                 <div className='card'>
                     <div className='container-icon'>
-                    <img className='ico_weather' src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="icon weather" /> 
+                        <img className='ico_weather' src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="icon weather" /> 
                         <p className='label'>{Math.round(temp)} {isCelsius ? '°C' : '°F' } </p>
-                    </div>
+                        <div className='button-container'> <button className='button' onClick={changeGrade}>Degress °F / °C</button> </div>
+                    </div> 
                     <div>
                     
                         <div className='grid-data'>
@@ -94,7 +99,7 @@ const [img, setImg] = useState('');
                             <p className='label'>Humidity:</p>    <p className='data'> {weather.data?.main?.humidity} </p> <p className='label'>%</p>
                             <p className='label'>Pressure:</p>    <p className='data'> {weather.data?.main?.pressure} </p> <p className='label'>hPa</p>
                         </div>
-                        <div className='button-container'> <button className='button' onClick={changeGrade}>Degress °F / °C</button> </div>
+                        
                     </div>
                 </div>
             </div> 
