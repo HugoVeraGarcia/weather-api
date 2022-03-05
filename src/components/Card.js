@@ -46,7 +46,7 @@ const [img, setImg] = useState('');
                 setTemp(res.data?.main?.temp - 273.15);
                 setIcon(res.data?.weather?.[0]?.icon);
                 getImage(); 
-            });
+            },[]);
     }
 
     useEffect(()=>{
