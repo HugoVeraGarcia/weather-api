@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #3E6E8C;
+    background-size: cover;
+    color: #8C6746;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    height: 100vh;
+    /*background-image: url('../assets/broken_clouds.jpg');*/
+    background-size: cover;
+}
+.container__card{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;   
+    border-radius: 30px;
+    width: 600px;
+    background-color: #F2E85E;
+    margin-top: 2rem;
+    padding: 2rem
+}
+h1{
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+.card{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+} 
+.container-icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3rem;
+    color: #D98B2B;
+}
+.ico_weather{
+    width: 250px;
+}
+
+.button{
+    background-color:#BF5A50;
+    color: white;
+    width: 80%;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+.label{
+    font-weight: 600;
+    /*text-transform: uppercase;*/
+}
+.container-data{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.data{
+    margin-left: 20px;
+    margin-right: 5px;
+    color: #D98B2B;
+    font-weight: 800;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.grid-data{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+
+}
