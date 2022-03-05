@@ -6,8 +6,8 @@ const Card = () => {
 const [weather, setWeather] = useState({});
 const [temp, setTemp] = useState(0);
 const [isCelsius, setIsCelsius] = useState(true);
-const [icon, setIcon] = useState ('')
-const [img, setImg] = useState('')
+const [icon, setIcon] = useState ('');
+const [img, setImg] = useState('');
 
 
     const getImage = () => {
@@ -53,7 +53,7 @@ const [img, setImg] = useState('')
 
         navigator.geolocation.getCurrentPosition(success);
 
-    },[]);
+    })
 
     const changeGrade = ()=>{
         console.log('hello')
@@ -68,7 +68,7 @@ const [img, setImg] = useState('')
         }
     }
 
-
+    //document.body.style = "background: red" ... ejemplo
     return (
         
         <div className='container' style={{
@@ -83,8 +83,7 @@ const [img, setImg] = useState('')
 
                 <div className='card'>
                     <div className='container-icon'>
-                        <p>`{icon}`</p>
-                    <img className='ico_weather' src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="icon weather" />
+                    <img className='ico_weather' src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="icon weather" /> 
                         <p className='label'>{Math.round(temp)} {isCelsius ? '°C' : '°F' } </p>
                     </div>
                     <div>
