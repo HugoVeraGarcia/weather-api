@@ -46,12 +46,12 @@ let url;
                 setWeather(res);
                 setTemp(res.data?.main?.temp - 273.15);
                 setIcon(res.data?.weather?.[0]?.icon);
-                getImage();
+                //getImage();
             });
             
         }
         
-        useEffect(()=>{
+    useEffect(()=>{
             
             navigator.geolocation.getCurrentPosition(success);
 
