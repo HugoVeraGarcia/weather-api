@@ -34,7 +34,6 @@ let url;
 
     
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const success = pos =>{
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
@@ -56,7 +55,7 @@ let url;
             
             navigator.geolocation.getCurrentPosition(success);
 
-    },[success]);
+    },[]);
 
     const changeGrade = ()=>{
         
