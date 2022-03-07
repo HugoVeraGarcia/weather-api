@@ -16,6 +16,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /*margin-top: calc(45vh);*/
 }
 
 .container{
@@ -84,7 +85,7 @@ h1{
 .button-container{
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .grid-data{
@@ -92,7 +93,7 @@ h1{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     column-gap: 20px;
-    row-gap: 50px;
+    row-gap: 30px;
     margin-top: 55px;
 
 }
