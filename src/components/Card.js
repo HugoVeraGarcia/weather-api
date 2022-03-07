@@ -38,7 +38,7 @@ const [icon, setIcon] = useState ('');
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
-
+        
         
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=534c120127d41a8820363cb05f55e278`)
             .then(res => {
